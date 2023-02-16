@@ -1,39 +1,21 @@
 import java.util.*;
-public class RemoveAdjacentDuplicates {
-  public static String removeDuplicates(String s) {
-    int n = s.length();
-    if (n <= 1) return s;
-
-    StringBuilder sb = new StringBuilder();
-    int i = 0;
-    while (i < n - 1) {
-      if (s.charAt(i) != s.charAt(i + 1)) {
-        sb.append(s.charAt(i));
-        i++;
-      } else {
-        i++;
-        while (i < n - 1 && s.charAt(i) == s.charAt(i + 1)) {
-          
+public class countDistinct {    
+public static String removeDups(String s1 ){
+    int start=0;
+    for(int i=start;i<s1.length()-1;i++){
+        if (s1.charAt(i) == s1.charAt(i+1)){
+            start=(i>0)?i-1:0;
+            return removeDups(s1.substring(0,i)+s1.substring(i+2));
         }
-        i++;
-      }
+        
     }
-
-    if (s.charAt(n - 1) != s.charAt(n - 2)) {
-      sb.append(s.charAt(n - 1));
-    }
-
-    String result = sb.toString();
-    if (result.equals(s)) {
-      return result;
-    } else {
-      return removeDuplicates(result);
-    }
-  }
+    return s1;
+        
+}
 
   public static void main(String[] args) {
-    Scanner sc= new Scanner(System.in);
-    String s1 = sc.next();
-    System.out.println(removeDuplicates(s1));
+      Scanner sc= new Scanner(System.in);
+      String s1 = sc.next();
+      System.out.println(removeDups(s1));
   }
 }
